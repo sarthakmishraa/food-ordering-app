@@ -1,5 +1,4 @@
-import { IPaymentMethod } from "./constants";
-import { IMenuItem, IOrderSummary } from "./types";
+import { IMenuItem } from "./types";
 
 export const menuItems: IMenuItem[] = [
   {
