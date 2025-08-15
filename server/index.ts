@@ -343,7 +343,12 @@ const helpDetails = {
 };
 
 const app = express();
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(
+  cors({
+    origin:
+      "https://food-ordering-app-eight-dusky.vercel.app",
+  })
+);
 const port = process.env.PORT_BE || 3000;
 
 app.get("/", (req: Request, res: Response) => {
