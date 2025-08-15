@@ -58,3 +58,18 @@ export interface IOrderSummary {
   selectedAddress: ISelectedAddress;
   paymentDetails: IPaymentDetails;
 }
+
+export interface IHelpData {
+  name: string;
+  email: string;
+}
+
+export interface SomethingWentWrongProps {
+  message?: string;
+  onRetry?: () => void;
+}
+
+export interface LabelProps {
+  text: string;
+  className?: string;
+}

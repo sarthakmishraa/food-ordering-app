@@ -337,6 +337,11 @@ let menuItems = [
   },
 ];
 
+const helpDetails = {
+  name: "Sarthak Mishra",
+  email: "msarthak785@gmail.com",
+};
+
 const app = express();
 app.use(cors({ origin: "http://localhost:5173" }));
 const port = process.env.PORT_BE || 3000;
@@ -349,6 +354,10 @@ app.get("/", (req: Request, res: Response) => {
 
 app.get("/menu", (req: Request, res: Response) => {
   res.status(200).send(menuItems);
+});
+
+app.get("/help", (req: Request, res: Response) => {
+  res.status(200).send(helpDetails);
 });
 
 app.listen(port, () => {

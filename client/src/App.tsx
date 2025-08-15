@@ -10,6 +10,7 @@ import { Header } from "./components/Header.tsx";
 import { Help } from "./pages/Help.tsx";
 import { Cart } from "./pages/Cart.tsx";
 import { Orders } from "./pages/Orders.tsx";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/orders" element={<Orders />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
+        <Toaster position="bottom-left" />
       </Router>
     </div>
   );

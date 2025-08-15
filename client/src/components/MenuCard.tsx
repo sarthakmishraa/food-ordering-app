@@ -4,10 +4,16 @@ import {
   INRSymbol,
   placeholderUrl,
   DISCOUNT_PERCENTAGE,
+  toastStyles,
 } from "../utils/constants";
+import { useAppDispatch } from "../store/hooks";
+import { addItemToCart } from "../slices/cartSlice";
+import toast from "react-hot-toast";
 
 export const MenuCard = (props: IMenuCard) => {
   const item = props.item;
+
+  const dispatch = useAppDispatch();
 
   const discountedPrice =
     item?.price - (item?.price * DISCOUNT_PERCENTAGE) / 100;
@@ -24,6 +30,17 @@ export const MenuCard = (props: IMenuCard) => {
         {price}
       </div>
     );
+  };
+
+  const addToCart = () => {
+    const itemToCart = {
+      id: item?.id,
+      quantity: 1,
+    };
+    dispatch(addItemToCart(itemToCart));
+    toast.success(`${item?.name} added to cart`, {
+      style: toastStyles,
+    });
   };
 
   return (
@@ -51,9 +68,7 @@ export const MenuCard = (props: IMenuCard) => {
             </div>
             <PrimaryButton
               text="Add to cart"
-              onClick={() => {
-                console.log(`${item.name} added to cart`);
-              }}
+              onClick={addToCart}
             />
           </div>
         </div>

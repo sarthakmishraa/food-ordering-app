@@ -1,5 +1,4 @@
-import { IPaymentMethod } from "./constants";
-import { IMenuItem, IOrderSummary } from "./types";
+import { IMenuItem } from "./types";
 
 export const menuItems: IMenuItem[] = [
   {
@@ -334,25 +333,11 @@ export const menuItems: IMenuItem[] = [
   },
 ];
 
-export const mockOrderSummary: IOrderSummary = {
-  purchasedItems: [
-    {
-      id: "39",
-      quantity: 2,
-    },
-    {
-      id: "40",
-      quantity: 1,
-    },
-  ],
+export const mockOrderSummary: any = {
   selectedAddress: {
     address: "House Name near Random Building",
     city: "Mumbai",
     countryCode: "IN",
     pincode: 452006,
-  },
-  paymentDetails: {
-    amount: 650,
-    paymentMethod: IPaymentMethod.ONLINE,
   },
 };
