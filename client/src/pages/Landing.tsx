@@ -12,6 +12,11 @@ export const Landing = () => {
 
   const validTitle =
     appConfig.appTitle && appConfig.appTitle?.length > 0;
+
+  const loggedIn = true;
+
+  if (!loggedIn) return <div>Sign Up</div>;
+
   return (
     <div className="w-full flex flex-col items-center justify-center space-y-8">
       {validTitle && (
@@ -23,24 +28,6 @@ export const Landing = () => {
         text="Get Started"
         onClick={handleGetStartedClick}
       />
-      <div className="flex justify-center items-center h-[148px] w-full border text-4xl">
-        1
-      </div>
-      <div className="flex justify-center items-center h-[148px] w-full border text-4xl">
-        2
-      </div>
-      <div className="flex justify-center items-center h-[148px] w-full border text-4xl">
-        3
-      </div>
-      <div className="flex justify-center items-center h-[148px] w-full border text-4xl">
-        4
-      </div>
-      <div className="flex justify-center items-center h-[148px] w-full border text-4xl">
-        5
-      </div>
-      <div className="flex justify-center items-center h-[148px] w-full border text-4xl">
-        6
-      </div>
     </div>
   );
 };

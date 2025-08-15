@@ -1,22 +1,28 @@
 import { Banner } from "../components/Banner";
-import { TAX_PERCENTAGE } from "../utils/constants";
+import { useCart } from "../slices/cartSlice";
+import { useAppSelector } from "../store/hooks";
+import {
+  INRSymbol,
+  IPaymentMethod,
+  TAX_PERCENTAGE,
+} from "../utils/constants";
 import {
   menuItems,
   mockOrderSummary,
 } from "../utils/mockData";
-import { IOrderSummary } from "../utils/types";
+import { IPurchasedItem } from "../utils/types";
 
 export const Cart = () => {
-  const itemsPurchased = mockOrderSummary?.purchasedItems;
+  const cart = useAppSelector(useCart);
+  const itemsPurchased = cart;
   const selectedAddress = mockOrderSummary?.selectedAddress;
-  const paymentDetails = mockOrderSummary?.paymentDetails;
 
   const getTotalAmountFromOrderSummary = (
-    orderSummary: IOrderSummary,
+    itemsPurchased: IPurchasedItem[],
     includeTax: boolean
   ) => {
     let amount = 0;
-    orderSummary?.purchasedItems?.map((purchasedItem) => {
+    itemsPurchased?.map((purchasedItem) => {
       const itemObj = menuItems?.find(
         (i) => i?.id === purchasedItem?.id
       );
@@ -34,12 +40,12 @@ export const Cart = () => {
   };
 
   const totalAmount = getTotalAmountFromOrderSummary(
-    mockOrderSummary,
+    itemsPurchased,
     false
   );
 
   const totalAmountIncludingTax =
-    getTotalAmountFromOrderSummary(mockOrderSummary, true);
+    getTotalAmountFromOrderSummary(itemsPurchased, true);
 
   return (
     <div className="w-full h-full">
@@ -53,15 +59,16 @@ export const Cart = () => {
             <div>Stepper Content</div>
           </div>
         </div>
-        <div className="flex flex-col w-[40%] justify-between p-2 border border-slate-300 rounded-sm">
+        <div className="flex flex-col w-[40%] justify-between p-2 border border-slate-300 rounded-sm overflow-y-auto space-y-4">
           <div>
-            {itemsPurchased?.map((item) => {
+            {itemsPurchased?.map((item, index: number) => {
+              // Todo: use get by ID api to fetch cart items using ids present in cart
               const foundItem = menuItems?.find(
                 (i) => i?.id === item?.id
               );
               if (!foundItem) return;
               return (
-                <div className="p-2">
+                <div className="p-2" key={index}>
                   <div className="flex justify-between">
                     <div>{foundItem?.name}</div>
                     <div>
@@ -86,12 +93,16 @@ export const Cart = () => {
             <div>{selectedAddress?.pincode}</div>
           </div>
           <div>
-            <div>
-              Amount including tax:{" "}
-              {paymentDetails?.amount ||
-                totalAmountIncludingTax}
+            <div className="flex justify-between font-bold">
+              <div>Amount including tax: </div>
+              <div>
+                {`${INRSymbol} ${totalAmountIncludingTax}`}
+              </div>
             </div>
-            <div>{paymentDetails?.paymentMethod}</div>
+            <div className="flex justify-between font-bold">
+              <div>Payment Method: </div>
+              <div>{IPaymentMethod.ONLINE}</div>
+            </div>
           </div>
         </div>
       </div>

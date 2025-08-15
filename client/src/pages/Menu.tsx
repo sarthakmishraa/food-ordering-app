@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { MenuCard } from "../components/MenuCard";
 import { IMenuItem } from "../utils/types";
 import { Banner } from "../components/Banner";
+import toast from "react-hot-toast";
+import { toastStyles } from "../utils/constants";
+import { SomethingWentWrong } from "../components/SomethingWentWrong";
+import { Label } from "../components/Label";
 
 export const Menu = () => {
   const [loadingMenuItems, setLoadingMenuItems] =
@@ -10,15 +14,20 @@ export const Menu = () => {
     IMenuItem[] | null
   >(null);
 
+  const BE_API_URL = import.meta.env.VITE_BE_URL;
+
   const getMenuItems = () => {
     setLoadingMenuItems(true);
-    fetch("http://localhost:3000/menu")
+    fetch(`${BE_API_URL}/menu`)
       .then((res) => res.json())
       .then((data) => {
         setMenuItems(data);
       })
       .catch((error) => {
         console.error("Error fetching menu: ", error);
+        toast.error("Something went wrong", {
+          style: toastStyles,
+        });
       })
       .finally(() => {
         setLoadingMenuItems(false);
@@ -31,15 +40,13 @@ export const Menu = () => {
 
   return (
     <div className="flex flex-col space-y-4 items-center">
-      <div className="text-xl font-medium">
-        Today's Menu
-      </div>
+      <Label text="Today's Menu" />
       {loadingMenuItems ? (
         <Banner label={`Loading...`} />
       ) : (
         <>
           {menuItems === null ? (
-            <>Something went wrong</>
+            <SomethingWentWrong />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-3 p-2 gap-4">
               {menuItems?.map((item: IMenuItem) => (
