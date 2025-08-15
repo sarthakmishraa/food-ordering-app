@@ -1,4 +1,3 @@
-import React from "react";
 import { IMenuCard } from "../utils/types";
 import { PrimaryButton } from "./PrimaryButton";
 import {
