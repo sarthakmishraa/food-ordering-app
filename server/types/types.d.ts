@@ -73,14 +73,3 @@ export interface LabelProps {
   text: string;
   className?: string;
 }
-
-export interface IItemsFromCartDetails {
-  dish: IMenuItem;
-  quantity: number;
-}
-
-export interface ICartSummary {
-  amountBeforeTax: number;
-  amountAfterTax: number;
-  itemsFromCartDetails: IItemsFromCartDetails[];
-}

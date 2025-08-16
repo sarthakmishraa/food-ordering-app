@@ -18,3 +18,16 @@ export const toastStyles = {
   background: "#333",
   color: "#fff",
 };
+
+export type NetworkStatus =
+  | "idle"
+  | "loading"
+  | "loaded"
+  | "error";
+
+export enum NetworkStatusEnum {
+  Idle = "idle",
+  Loading = "loading",
+  Loaded = "loaded",
+  Error = "error",
+}
