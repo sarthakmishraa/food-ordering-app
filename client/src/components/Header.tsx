@@ -1,10 +1,15 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { HeaderTab } from "./HeaderTab";
+import { useAppSelector } from "../store/hooks";
+import { useCart } from "../slices/cartSlice";
 
 export const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const pathname = location.pathname;
+
+  const cart = useAppSelector(useCart);
+  const noOfItemsInCart = cart?.length;
 
   const handleHomeClick = () => {
     navigate("/");
@@ -52,7 +57,7 @@ export const Header = () => {
           isActiveTab={pathname === "/orders"}
         />
         <HeaderTab
-          tabTitle="Cart"
+          tabTitle={`Cart (${noOfItemsInCart})`}
           onClick={handleCartClick}
           isActiveTab={pathname === "/cart"}
         />

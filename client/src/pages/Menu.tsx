@@ -37,7 +37,7 @@ export const Menu = () => {
           menuItems === null ? (
             <SomethingWentWrong />
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-3 p-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 p-2 gap-4">
               {menuItems?.map((item: IMenuItem) => (
                 <MenuCard key={item?.id} item={item} />
               ))}

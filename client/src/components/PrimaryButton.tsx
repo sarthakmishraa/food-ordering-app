@@ -6,6 +6,7 @@ export const PrimaryButton = ({
   extraContainerClassNames,
   extraButtonClassNames,
   disabled,
+  children,
 }: IPrimaryButton) => {
   return (
     <div
@@ -16,7 +17,7 @@ export const PrimaryButton = ({
         onClick={(e) => onClick(e)}
         disabled={disabled}
       >
-        {text}
+        {children || text}
       </button>
     </div>
   );

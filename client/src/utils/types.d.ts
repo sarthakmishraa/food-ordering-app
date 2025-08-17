@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { IPaymentMethod } from "./constants";
 
 export interface IMenuItem {
@@ -16,6 +17,7 @@ export interface IPrimaryButton {
   extraContainerClassNames?: string;
   extraButtonClassNames?: string;
   disabled?: boolean;
+  children?: ReactNode;
 }
 
 export interface IMenuCard {

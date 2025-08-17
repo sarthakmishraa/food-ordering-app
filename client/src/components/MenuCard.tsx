@@ -5,15 +5,32 @@ import {
   placeholderUrl,
   DISCOUNT_PERCENTAGE,
   toastStyles,
+  REACT_ICONS_MD_ICON_SIZE,
+  REACT_ICONS_IO_ICON_SIZE,
 } from "../utils/constants";
-import { useAppDispatch } from "../store/hooks";
-import { addItemToCart } from "../slices/cartSlice";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../store/hooks";
+import {
+  addItemToCart,
+  decreaseQuantityFromCart,
+  removeItemFromCart,
+  useCart,
+} from "../slices/cartSlice";
 import toast from "react-hot-toast";
+import { Label } from "./Label";
+import { MdDelete } from "react-icons/md";
+import { IoMdAddCircle } from "react-icons/io";
+import { IoMdRemoveCircle } from "react-icons/io";
 
 export const MenuCard = (props: IMenuCard) => {
   const item = props.item;
 
   const dispatch = useAppDispatch();
+  const cart = useAppSelector(useCart);
+
+  const isInCart = cart?.find((i) => i?.id === item?.id);
 
   const discountedPrice =
     item?.price - (item?.price * DISCOUNT_PERCENTAGE) / 100;
@@ -35,10 +52,34 @@ export const MenuCard = (props: IMenuCard) => {
   const addToCart = () => {
     const itemToCart = {
       id: item?.id,
-      quantity: 1,
+      quantity: isInCart?.quantity || 1,
     };
     dispatch(addItemToCart(itemToCart));
     toast.success(`${item?.name} added to cart`, {
+      style: toastStyles,
+    });
+  };
+
+  const decreaseQuantity = () => {
+    if (isInCart?.quantity === 1) {
+      toast.success(`${item?.name} removed from cart`, {
+        style: toastStyles,
+      });
+    }
+    const itemToDecrease = {
+      id: isInCart?.id || "",
+      quantity: isInCart?.quantity || 0,
+    };
+    dispatch(decreaseQuantityFromCart(itemToDecrease));
+  };
+
+  const removeFromCart = () => {
+    const itemToRemove = {
+      id: isInCart?.id || "",
+      quantity: isInCart?.quantity || 0,
+    };
+    dispatch(removeItemFromCart(itemToRemove));
+    toast.success(`${item?.name} removed from cart`, {
       style: toastStyles,
     });
   };
@@ -66,10 +107,43 @@ export const MenuCard = (props: IMenuCard) => {
               <s>{price(item?.price)}</s>
               {price(discountedPrice, "!text-2xl")}
             </div>
-            <PrimaryButton
-              text="Add to cart"
-              onClick={addToCart}
-            />
+            {isInCart && isInCart?.quantity > 0 ? (
+              <div className="flex items-center space-x-2">
+                <PrimaryButton
+                  children={
+                    <IoMdRemoveCircle
+                      size={REACT_ICONS_IO_ICON_SIZE}
+                    />
+                  }
+                  onClick={decreaseQuantity}
+                />
+                <Label
+                  text={isInCart?.quantity?.toString()}
+                  className="w-[18px] text-center"
+                />
+                <PrimaryButton
+                  children={
+                    <IoMdAddCircle
+                      size={REACT_ICONS_IO_ICON_SIZE}
+                    />
+                  }
+                  onClick={addToCart}
+                />
+                <PrimaryButton
+                  children={
+                    <MdDelete
+                      size={REACT_ICONS_MD_ICON_SIZE}
+                    />
+                  }
+                  onClick={removeFromCart}
+                />
+              </div>
+            ) : (
+              <PrimaryButton
+                text="Add to cart"
+                onClick={addToCart}
+              />
+            )}
           </div>
         </div>
       </div>
