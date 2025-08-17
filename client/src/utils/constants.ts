@@ -31,3 +31,6 @@ export enum NetworkStatusEnum {
   Loaded = "loaded",
   Error = "error",
 }
+
+export const REACT_ICONS_MD_ICON_SIZE = 18;
+export const REACT_ICONS_IO_ICON_SIZE = 16;
