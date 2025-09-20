@@ -16,6 +16,7 @@ import {
 } from "../utils/constants";
 import { mockOrderSummary } from "../utils/mockData";
 import { SomethingWentWrong } from "../components/SomethingWentWrong";
+import { LoadingScreen } from "../components/LoadingScreen";
 
 export const Cart = () => {
   const cart = useAppSelector(useCart);
@@ -23,14 +24,6 @@ export const Cart = () => {
     data: cartSummaryData,
     networkStatus: cartSummaryNetworkStatus,
   } = useAppSelector(useCartSummary);
-
-  const bannerText =
-    cartSummaryNetworkStatus === NetworkStatusEnum.Loading
-      ? "Loading..."
-      : cartSummaryNetworkStatus ===
-        NetworkStatusEnum.Loaded
-      ? "Your cart"
-      : "";
 
   const amountAfterTax =
     cartSummaryData?.amountAfterTax || 0;
@@ -52,17 +45,20 @@ export const Cart = () => {
       NetworkStatusEnum.Error ? (
         <SomethingWentWrong />
       ) : cartSummaryNetworkStatus ===
-          NetworkStatusEnum.Loading ||
-        cartSummaryNetworkStatus ===
-          NetworkStatusEnum.Loaded ? (
+        NetworkStatusEnum.Loading ? (
         <>
-          <Banner label={bannerText} />
+          <LoadingScreen />
+        </>
+      ) : cartSummaryNetworkStatus ===
+        NetworkStatusEnum.Loaded ? (
+        <>
+          <Banner label={"Your cart"} />
           <div className="w-full h-[480px] flex flex-row px-2 py-4 space-x-2">
-            <div className="w-full flex flex-col justify-between p-2 space-y-2 border border-slate-300 rounded-sm">
-              <div className="border border-slate-300 rounded-sm p-4">
+            <div className="w-full flex flex-col justify-between p-2 space-y-2 border border-[color:var(--color-border)] rounded-sm">
+              <div className="border border-[color:var(--color-border)] rounded-sm p-4">
                 Stepper
               </div>
-              <div className="flex flex-grow border border-slate-300 rounded-sm p-4">
+              <div className="flex flex-grow border border-[color:var(--color-border)] rounded-sm p-4">
                 <div>
                   <div>{selectedAddress?.address}</div>
                   <div>{selectedAddress?.city}</div>
@@ -71,7 +67,7 @@ export const Cart = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col w-[40%] justify-between p-2 border border-slate-300 rounded-sm overflow-y-auto space-y-4">
+            <div className="flex flex-col w-[40%] justify-between p-2 border border-[color:var(--color-border)] rounded-sm overflow-y-auto space-y-4">
               <div>
                 {itemsFromCartDetails?.map(
                   (item, index: number) => (
@@ -91,13 +87,19 @@ export const Cart = () => {
                 <hr />
                 <div className="p-2 flex justify-between">
                   <div>Total</div>
-                  <div>{amountBeforeTax}</div>
+                  <div>
+                    {`${INRSymbol} ${amountBeforeTax?.toFixed(
+                      2
+                    )}`}
+                  </div>
                 </div>
               </div>
               <div>
                 <div className="flex justify-between font-bold">
                   <div>Amount including tax: </div>
-                  <div>{`${INRSymbol} ${amountAfterTax}`}</div>
+                  <div>{`${INRSymbol} ${amountAfterTax?.toFixed(
+                    2
+                  )}`}</div>
                 </div>
                 <div className="flex justify-between font-bold">
                   <div>Payment Method: </div>

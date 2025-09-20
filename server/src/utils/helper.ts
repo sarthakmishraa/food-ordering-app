@@ -1,5 +1,8 @@
 import { IPurchasedItem } from "../types/types";
-import { TAX_PERCENTAGE } from "./constants";
+import {
+  DISCOUNT_PERCENTAGE,
+  TAX_PERCENTAGE,
+} from "./constants";
 import { menuItems } from "./mocks";
 
 export const getTotalAmountFromOrderSummary = (
@@ -13,7 +16,10 @@ export const getTotalAmountFromOrderSummary = (
     );
     if (!itemObj) return false;
 
-    amount += purchasedItem?.quantity * itemObj?.price;
+    amount +=
+      purchasedItem?.quantity *
+      (itemObj?.price -
+        (itemObj?.price * DISCOUNT_PERCENTAGE) / 100);
   });
 
   if (includeTax) {

@@ -13,7 +13,7 @@ export const PrimaryButton = ({
       className={`${extraContainerClassNames} cursor-pointer disabled:cursor-not-allowed`}
     >
       <button
-        className={`${extraButtonClassNames} cursor-pointer text-sm p-2 border border-red-200 rounded-sm`}
+        className={`${extraButtonClassNames} cursor-pointer text-sm p-2 border border-[color:var(--color-border)] rounded-sm`}
         onClick={(e) => onClick(e)}
         disabled={disabled}
       >

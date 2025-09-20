@@ -86,3 +86,42 @@ export interface ICartSummary {
   amountAfterTax: number;
   itemsFromCartDetails: IItemsFromCartDetails[];
 }
+
+export interface ColorSet {
+  primary: string;
+  secondary: string;
+  surface: string;
+}
+
+export interface TextColorSet {
+  primary: string;
+  secondary: string;
+  link: string;
+  inverse: string;
+}
+
+export interface StateColors {
+  success: string;
+  warning: string;
+  error: string;
+  info: string;
+}
+
+export interface TypographyConfig {
+  fontFamily: string;
+  fontSizeBase: string;
+  headingFontWeight: number;
+  bodyFontWeight: number;
+}
+
+export interface IConfig {
+  appTitle: string;
+  colors: {
+    bgColor: ColorSet;
+    textColor: TextColorSet;
+    accentColor: string;
+    borderColor: string;
+    states: StateColors;
+  };
+  typography: TypographyConfig;
+}

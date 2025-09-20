@@ -87,19 +87,19 @@ export const MenuCard = (props: IMenuCard) => {
   return (
     <div
       key={item?.id}
-      className="p-2 space-y-2 text-sm font-normal border border-slate-300 rounded-md"
+      className="p-2 space-y-2 text-sm font-normal bg-[color:var(--color-bg-secondary)] rounded-md"
     >
       <div className="flex items-center">
         <img
           src={placeholderUrl}
           alt="food item"
-          className="w-[148px] h-[108px]"
+          className="w-[148px] h-[108px] rounded-lg object-cover"
         />
         <div className="flex flex-col mx-4 space-y-2 w-full">
-          <div className="text-center text-lg font-medium">
+          <div className="text-lg font-medium">
             {item?.name}
           </div>
-          <div className="overflow-hidden text-ellipsis">
+          <div className="overflow-hidden text-ellipsis line-clamp-2">
             {item?.description}
           </div>
           <div className="flex justify-between items-center">
@@ -142,6 +142,7 @@ export const MenuCard = (props: IMenuCard) => {
               <PrimaryButton
                 text="Add to cart"
                 onClick={addToCart}
+                extraContainerClassNames="hover:bg-[color:var(--color-bg-surface)] hover:text-[color:var(--color-bg-secondary)] rounded-md"
               />
             )}
           </div>

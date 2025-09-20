@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { MenuCard } from "../components/MenuCard";
 import { IMenuItem } from "../utils/types";
-import { Banner } from "../components/Banner";
 import { NetworkStatusEnum } from "../utils/constants";
 import { SomethingWentWrong } from "../components/SomethingWentWrong";
 import { Label } from "../components/Label";
@@ -10,6 +9,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../store/hooks";
+import { LoadingScreen } from "../components/LoadingScreen";
 
 export const Menu = () => {
   const dispatch = useAppDispatch();
@@ -27,10 +27,13 @@ export const Menu = () => {
   }, []);
 
   return (
-    <div className="flex flex-col space-y-4 items-center">
-      <Label text="Today's Menu" />
+    <div className="h-full flex flex-col space-y-4 items-center">
+      <Label
+        text="Today's Menu"
+        className="text-[color:var(--color-text-primary)]"
+      />
       {menuNetworkStatus === NetworkStatusEnum.Loading ? (
-        <Banner label={`Loading...`} />
+        <LoadingScreen />
       ) : (
         <>
           {menuNetworkStatus === NetworkStatusEnum.Error ||

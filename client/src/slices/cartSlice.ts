@@ -38,7 +38,6 @@ export const getCartSummary = createAsyncThunk<
   IPurchasedItem[]
 >("cart/getCartSummary", async (cart) => {
   try {
-    console.log({ cart });
     const response = await fetch(`${BE_API_URL}/cart`, {
       method: "POST",
       headers: {

@@ -1,9 +1,12 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { helpDetails, menuItems } from "./utils/mocks";
+import {
+  helpDetails,
+  menuItems,
+  uiConfig,
+} from "./utils/mocks";
 import { getTotalAmountFromOrderSummary } from "./utils/helper";
-import { IMenuItem } from "./types/types";
 
 dotenv.config();
 
@@ -27,8 +30,17 @@ app.get("/menu", (req: Request, res: Response) => {
   res.status(200).send(menuItems);
 });
 
+app.get("/config", (req: Request, res: Response) => {
+  res.status(200).send(uiConfig);
+});
+
 app.post("/cart", (req: Request, res: Response) => {
   const cart = req.body;
+
+  if (!cart) {
+    res.status(404).send("Error occured: Cart not found");
+    return;
+  }
 
   const amountBeforeTax = getTotalAmountFromOrderSummary(
     cart,

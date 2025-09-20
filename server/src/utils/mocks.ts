@@ -335,3 +335,33 @@ export const helpDetails = {
   name: "Sarthak Mishra",
   email: "msarthak785@gmail.com",
 };
+
+export const uiConfig = {
+  appTitle: "Sasta Swiggy",
+  colors: {
+    bgColor: {
+      primary: "#ffffff",
+      secondary: "#f7f7f7",
+      surface: "#434348",
+    },
+    textColor: {
+      primary: "#4D4D4D",
+      secondary: "#929191",
+      link: "#0875B1",
+      inverse: "#ffffff",
+    },
+    accentColor: "#4D4D4D",
+    borderColor: "#4D4D4D",
+    states: {
+      success: "#15C309",
+      warning: "#FC950F",
+      error: "#FC0F0F",
+      info: "#0FC5FC",
+    },
+  },
+
+  typography: {
+    fontFamily: "'Roboto', sans-serif",
+    fontSizeBase: "16px",
+  },
+};
