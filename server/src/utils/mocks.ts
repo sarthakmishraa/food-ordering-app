@@ -338,6 +338,8 @@ export const helpDetails = {
 
 export const uiConfig = {
   appTitle: "Sasta Swiggy",
+  heroSectionDescription:
+    "Craving your favorite meals without burning your wallet? Sasta Swiggy brings you hot, tasty food from local restaurants at the lowest prices—delivered fast to your doorstep.",
   colors: {
     bgColor: {
       primary: "#ffffff",

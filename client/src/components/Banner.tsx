@@ -7,10 +7,10 @@ export const Banner = ({
 }: IBanner) => {
   return (
     <div
-      className={`${containerClassNames} h-32 w-full flex justify-center items-center bg-[color:var(--color-bg-secondary)] rounded-xl`}
+      className={`${containerClassNames} h-32 w-full flex justify-center items-center bg-[color:var(--color-bg-secondary)] rounded-xl shadow-md border border-neutral-200`}
     >
       <div
-        className={`${labelClassNames} text-3xl text-[color:var(--color-text-primary)] font-medium`}
+        className={`${labelClassNames} font-bold text-3xl sm:text-5xl lg:text-7xl tracking-tight text-[color:var(--color-text-primary)] drop-shadow-xl`}
       >
         {label}
       </div>

@@ -6,7 +6,7 @@ export const Label: React.FC<LabelProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`text-xl font-medium ${className}`}>
+    <div className={`text-2xl font-bold ${className}`}>
       {text}
     </div>
   );

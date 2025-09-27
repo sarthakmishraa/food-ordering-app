@@ -116,6 +116,7 @@ export interface TypographyConfig {
 
 export interface IConfig {
   appTitle: string;
+  heroSectionDescription: string;
   colors: {
     bgColor: ColorSet;
     textColor: TextColorSet;

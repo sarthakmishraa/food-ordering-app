@@ -87,16 +87,16 @@ export const MenuCard = (props: IMenuCard) => {
   return (
     <div
       key={item?.id}
-      className="p-2 space-y-2 text-sm font-normal bg-[color:var(--color-bg-secondary)] rounded-md"
+      className="p-2 space-y-2 text-sm font-normal border border-neutral-200 bg-[color:var(--color-bg-secondary)] rounded-md shadow-md"
     >
-      <div className="flex items-center">
+      <div className="h-full flex items-center">
         <img
           src={placeholderUrl}
           alt="food item"
-          className="w-[148px] h-[108px] rounded-lg object-cover"
+          className="w-[96px] lg:w-[148px] h-[64px] lg:h-[108px] rounded-lg object-cover"
         />
-        <div className="flex flex-col mx-4 space-y-2 w-full">
-          <div className="text-lg font-medium">
+        <div className="flex flex-col justify-between mx-4 space-y-2 w-full h-full">
+          <div className="text-lg font-bold">
             {item?.name}
           </div>
           <div className="overflow-hidden text-ellipsis line-clamp-2">
@@ -119,7 +119,7 @@ export const MenuCard = (props: IMenuCard) => {
                 />
                 <Label
                   text={isInCart?.quantity?.toString()}
-                  className="w-[18px] text-center"
+                  className="w-[24px] text-center"
                 />
                 <PrimaryButton
                   children={
@@ -140,9 +140,8 @@ export const MenuCard = (props: IMenuCard) => {
               </div>
             ) : (
               <PrimaryButton
-                text="Add to cart"
+                text="Add to Cart"
                 onClick={addToCart}
-                extraContainerClassNames="hover:bg-[color:var(--color-bg-surface)] hover:text-[color:var(--color-bg-secondary)] rounded-md"
               />
             )}
           </div>

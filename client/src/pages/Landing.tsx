@@ -5,6 +5,7 @@ import { NetworkStatusEnum } from "../utils/constants";
 import { LoadingScreen } from "../components/LoadingScreen";
 import { useUIConfig } from "../slices/appContextSlice";
 import { useAppSelector } from "../store/hooks";
+import { Label } from "../components/Label";
 
 export const Landing = () => {
   const navigate = useNavigate();
@@ -21,6 +22,10 @@ export const Landing = () => {
   const validTitle =
     appConfig?.appTitle && appConfig.appTitle?.length > 0;
 
+  const validDescription =
+    appConfig?.heroSectionDescription &&
+    appConfig?.heroSectionDescription?.length > 0;
+
   const loggedIn = true;
 
   if (!loggedIn) return <div>Sign Up</div>;
@@ -31,7 +36,7 @@ export const Landing = () => {
         appConfigNetworkStatus === NetworkStatusEnum.Loading
           ? "justify-center"
           : "justify-start"
-      } items-center space-y-8`}
+      } items-center space-y-8 mt-12`}
     >
       {appConfigNetworkStatus ===
       NetworkStatusEnum.Loading ? (
@@ -42,6 +47,12 @@ export const Landing = () => {
           {validTitle && (
             <Banner
               label={`Welcome to ${appConfig?.appTitle}`}
+            />
+          )}
+          {validDescription && (
+            <Label
+              text={`${appConfig.heroSectionDescription}`}
+              className="text-center lg:w-[640px] text-sm font-normal leading-snug tracking-normal"
             />
           )}
           <PrimaryButton

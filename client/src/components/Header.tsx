@@ -2,6 +2,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { HeaderTab } from "./HeaderTab";
 import { useAppSelector } from "../store/hooks";
 import { useCart } from "../slices/cartSlice";
+import { PrimaryButton } from "./PrimaryButton";
+import { PiShoppingCartSimpleFill } from "react-icons/pi";
+import { REACT_ICONS_PI_ICON_SIZE } from "../utils/constants";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -50,17 +53,25 @@ export const Header = () => {
           isActiveTab={pathname === "/help"}
         />
       </div>
-      <div className="flex space-x-4">
+      <div className="flex items-center space-x-4">
         <HeaderTab
           tabTitle="Orders"
           onClick={handleOrdersClick}
           isActiveTab={pathname === "/orders"}
         />
-        <HeaderTab
-          tabTitle={`Cart (${noOfItemsInCart})`}
+        <PrimaryButton
+          extraButtonClassNames="py-0.5 border-none flex items-center"
           onClick={handleCartClick}
-          isActiveTab={pathname === "/cart"}
-        />
+        >
+          <span className="flex items-center space-x-1">
+            <div>
+              <PiShoppingCartSimpleFill
+                size={REACT_ICONS_PI_ICON_SIZE}
+              />
+            </div>
+            <div>{noOfItemsInCart}</div>
+          </span>
+        </PrimaryButton>
       </div>
     </div>
   );

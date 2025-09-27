@@ -52,7 +52,7 @@ export const Cart = () => {
       ) : cartSummaryNetworkStatus ===
         NetworkStatusEnum.Loaded ? (
         <>
-          <Banner label={"Your cart"} />
+          <Banner label={"Your Cart"} />
           <div className="w-full h-[480px] flex flex-row px-2 py-4 space-x-2">
             <div className="w-full flex flex-col justify-between p-2 space-y-2 border border-[color:var(--color-border)] rounded-sm">
               <div className="border border-[color:var(--color-border)] rounded-sm p-4">

@@ -32,5 +32,6 @@ export enum NetworkStatusEnum {
   Error = "error",
 }
 
-export const REACT_ICONS_MD_ICON_SIZE = 18;
-export const REACT_ICONS_IO_ICON_SIZE = 16;
+export const REACT_ICONS_MD_ICON_SIZE = 20;
+export const REACT_ICONS_IO_ICON_SIZE = 20;
+export const REACT_ICONS_PI_ICON_SIZE = 20;
