@@ -47,7 +47,7 @@ function App() {
   }, [appConfigNetworkStatus]);
 
   return (
-    <div className="px-4 lg:px-20 w-full h-screen bg-linear-to-b from-[var(--color-bg-secondary)] to-[color:var(--color-bg-primary)] ">
+    <div className="px-4 lg:px-20 w-full h-screen bg-linear-to-b from-[var(--color-bg-secondary)] to-[color:var(--color-bg-primary)] selection:bg-[color:var(--color-text-primary)] selection:text-[color:var(--color-bg-primary)]">
       <Router>
         <Header />
         <Routes>
