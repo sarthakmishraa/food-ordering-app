@@ -26,6 +26,10 @@ export const Header = () => {
     navigate("/help");
   };
 
+  const handleGustoClick = () => {
+    navigate("/gusto");
+  };
+
   const handleOrdersClick = () => {
     navigate("orders");
   };
@@ -46,6 +50,11 @@ export const Header = () => {
           tabTitle="Menu"
           onClick={handleMenuClick}
           isActiveTab={pathname === "/menu"}
+        />
+        <HeaderTab
+          tabTitle="Chat with Gusto"
+          onClick={handleGustoClick}
+          isActiveTab={pathname === "/gusto"}
         />
         <HeaderTab
           tabTitle="Help"

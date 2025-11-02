@@ -11,6 +11,7 @@
   "author": "Sarthak Mishra",
   "license": "ISC",
   "dependencies": {
+    "@google/genai": "^1.28.0",
     "cors": "^2.8.5",
     "dotenv": "^17.0.1",
     "express": "^5.1.0"

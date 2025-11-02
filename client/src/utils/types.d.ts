@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { IPaymentMethod } from "./constants";
+import { IPaymentMethod, MessageRole } from "./constants";
 
 export interface IMenuItem {
   id: string;
@@ -125,4 +125,19 @@ export interface IConfig {
     states: StateColors;
   };
   typography: TypographyConfig;
+}
+
+export interface Message {
+  id: string;
+  role: MessageRole;
+  data: {
+    content: string;
+  };
+  createdAt: number;
+}
+
+export interface StreamMessage {
+  text?: string;
+  isStreaming?: boolean;
+  isThinking?: boolean;
 }

@@ -5,6 +5,7 @@ import home from "./routes/home";
 import config from "./routes/config";
 import menuCart from "./routes/menuCart";
 import helpAndSupport from "./routes/helpAndSupport";
+import generateTextResponse from "./routes/generateTextResponse";
 
 dotenv.config();
 
@@ -30,6 +31,8 @@ app.use("", menuCart);
 
 // help and support APIs
 app.use("", helpAndSupport);
+
+app.use("", generateTextResponse);
 
 app.listen(port, () => {
   console.log("Server is fired at port: ", { port });

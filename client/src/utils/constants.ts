@@ -32,6 +32,11 @@ export enum NetworkStatusEnum {
   Error = "error",
 }
 
+export enum MessageRole {
+  USER = "USER",
+  BOT = "BOT",
+}
+
 export const REACT_ICONS_MD_ICON_SIZE = 20;
 export const REACT_ICONS_IO_ICON_SIZE = 20;
 export const REACT_ICONS_PI_ICON_SIZE = 20;

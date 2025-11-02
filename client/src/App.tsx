@@ -22,6 +22,7 @@ import {
   useUIConfig,
 } from "./slices/appContextSlice.ts";
 import { NetworkStatusEnum } from "./utils/constants.ts";
+import { ChatWithGusto } from "./pages/ChatWithGusto.tsx";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -47,7 +48,7 @@ function App() {
   }, [appConfigNetworkStatus]);
 
   return (
-    <div className="px-4 lg:px-20 w-full h-screen bg-linear-to-b from-[var(--color-bg-secondary)] to-[color:var(--color-bg-primary)] selection:bg-[color:var(--color-text-primary)] selection:text-[color:var(--color-bg-primary)]">
+    <div className="px-4 lg:px-20 w-full min-h-screen flex flex-col bg-linear-to-b from-[var(--color-bg-secondary)] to-[color:var(--color-bg-primary)] selection:bg-[color:var(--color-text-primary)] selection:text-[color:var(--color-bg-primary)]">
       <Router>
         <Header />
         <Routes>
@@ -56,6 +57,10 @@ function App() {
           <Route path="/help" element={<Help />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/gusto"
+            element={<ChatWithGusto />}
+          />
         </Routes>
         <Toaster position="bottom-left" />
       </Router>
