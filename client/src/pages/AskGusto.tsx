@@ -6,7 +6,7 @@ import {
   generateResponse,
   useMessages,
   useStreamMessage,
-} from "../slices/chatWithGustoSlice";
+} from "../slices/askGustoSlice";
 import {
   useAppDispatch,
   useAppSelector,
@@ -14,16 +14,18 @@ import {
 import { MessageBubble } from "../components/MessageBubble";
 import { ThinkingIndicator } from "../components/ThinkingIndicator";
 
-export const ChatWithGusto = () => {
+export const AskGusto = () => {
   const dispatch = useAppDispatch();
   const messages = useAppSelector(useMessages);
   const streamingMessage = useAppSelector(useStreamMessage);
 
+  const showPromptInputAtCenter = messages?.length === 0;
+  const welcomeText = "What’s on your mind today?";
+
   const sendMessage = async (prompt: string) => {
     if (
-      prompt &&
-      typeof prompt === "string" &&
-      prompt === ""
+      !prompt ||
+      (typeof prompt === "string" && prompt === "")
     ) {
       return;
     } else {
@@ -44,7 +46,7 @@ export const ChatWithGusto = () => {
 
   return (
     <div className="relative w-full flex-1 flex flex-col justify-between items-center space-y-1">
-      <div className="flex-1 p-4 w-full max-h-[calc(100vh-64px)] space-y-4 border border-solid border-[color:var(--color-border)] rounded-md overflow-y-auto">
+      <div className="p-4 w-full max-h-[calc(100vh-64px)] space-y-4 overflow-y-auto">
         {messages?.map((message, index: number) => {
           return (
             <MessageBubble
@@ -70,14 +72,24 @@ export const ChatWithGusto = () => {
           streamingMessage?.isThinking && (
             <ThinkingIndicator />
           )}
+        <div className="mb-[108px]"></div>
       </div>
       <div className="">
-        <PromptInput
-          containerClassName={
-            "absolute bottom-2 left-1/2 -translate-x-1/2"
-          }
-          onSubmit={(prompt) => sendMessage(prompt)}
-        />
+        {showPromptInputAtCenter && (
+          <div className="absolute bottom-[65%] left-1/2 -translate-x-1/2 text-3xl font-medium">
+            {welcomeText}
+          </div>
+        )}
+        <div>
+          <PromptInput
+            containerClassName={`absolute ${
+              showPromptInputAtCenter
+                ? "bottom-[45%]"
+                : "bottom-2"
+            }  left-1/2 -translate-x-1/2 duration-800`}
+            onSubmit={(prompt) => sendMessage(prompt)}
+          />
+        </div>
       </div>
     </div>
   );

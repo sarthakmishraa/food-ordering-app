@@ -52,7 +52,7 @@ export const Header = () => {
           isActiveTab={pathname === "/menu"}
         />
         <HeaderTab
-          tabTitle="Chat with Gusto"
+          tabTitle="Ask Gusto"
           onClick={handleGustoClick}
           isActiveTab={pathname === "/gusto"}
         />

@@ -22,7 +22,7 @@ import {
   useUIConfig,
 } from "./slices/appContextSlice.ts";
 import { NetworkStatusEnum } from "./utils/constants.ts";
-import { ChatWithGusto } from "./pages/ChatWithGusto.tsx";
+import { AskGusto } from "./pages/AskGusto.tsx";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -57,10 +57,7 @@ function App() {
           <Route path="/help" element={<Help />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/cart" element={<Cart />} />
-          <Route
-            path="/gusto"
-            element={<ChatWithGusto />}
-          />
+          <Route path="/gusto" element={<AskGusto />} />
         </Routes>
         <Toaster position="bottom-left" />
       </Router>

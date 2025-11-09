@@ -363,7 +363,7 @@ export const uiConfig = {
   },
 
   typography: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Inter', sans-serif",
     fontSizeBase: "16px",
   },
 };

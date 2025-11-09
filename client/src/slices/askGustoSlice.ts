@@ -13,12 +13,12 @@ import {
 
 const BE_API_URL = import.meta.env.VITE_BE_URL;
 
-export type ChatWithGustoState = {
+export type AskGustoState = {
   messages?: Message[];
   streamingMessage?: StreamMessage | null;
 };
 
-const initialState: ChatWithGustoState = {
+const initialState: AskGustoState = {
   messages: [],
   streamingMessage: {
     isThinking: false,
@@ -28,7 +28,7 @@ const initialState: ChatWithGustoState = {
 };
 
 export const generateResponse = createAsyncThunk(
-  "chatWithGusto/generateResponse",
+  "askGusto/generateResponse",
   async (prompt: string, { dispatch, getState }) => {
     return new Promise<void>((resolve, reject) => {
       const eventSource = new EventSource(
@@ -44,8 +44,6 @@ export const generateResponse = createAsyncThunk(
       };
       dispatch(setStreamingMessage(newEvent));
 
-      debugger;
-
       eventSource.onmessage = (event) => {
         if (event.data === "[DONE]") {
           const state = getState() as RootState;
@@ -54,8 +52,8 @@ export const generateResponse = createAsyncThunk(
             role: MessageRole.BOT,
             data: {
               content:
-                state?.chatWithGusto?.streamingMessage
-                  ?.text || "",
+                state?.askGusto?.streamingMessage?.text ||
+                "",
             },
             createdAt: Date.now(),
           };
@@ -103,8 +101,8 @@ export const generateResponse = createAsyncThunk(
   }
 );
 
-const chatWithGusto = createSlice({
-  name: "chatWithGusto",
+const askGusto = createSlice({
+  name: "askGusto",
   initialState: initialState,
   reducers: {
     addMessages(state, action: PayloadAction<Message[]>) {
@@ -148,7 +146,6 @@ const chatWithGusto = createSlice({
           isStreaming: true,
           text: undefined,
         };
-        debugger;
       })
       .addCase(generateResponse.fulfilled, (state) => {
         state.streamingMessage = {
@@ -168,10 +165,10 @@ const chatWithGusto = createSlice({
 });
 
 export const { addMessages, setStreamingMessage } =
-  chatWithGusto.actions;
+  askGusto.actions;
 export const useMessages = (state: RootState) =>
-  state.chatWithGusto.messages;
+  state.askGusto.messages;
 export const useStreamMessage = (state: RootState) =>
-  state.chatWithGusto.streamingMessage;
+  state.askGusto.streamingMessage;
 
-export default chatWithGusto.reducer;
+export default askGusto.reducer;
