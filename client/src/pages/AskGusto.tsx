@@ -13,6 +13,7 @@ import {
 } from "../store/hooks";
 import { MessageBubble } from "../components/MessageBubble";
 import { ThinkingIndicator } from "../components/ThinkingIndicator";
+import { generateRandomId } from "../utils/helper";
 
 export const AskGusto = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +21,8 @@ export const AskGusto = () => {
   const streamingMessage = useAppSelector(useStreamMessage);
 
   const showPromptInputAtCenter = messages?.length === 0;
-  const welcomeText = "What’s on your mind today?";
+  const welcomeTextTitle = "Hi! I'm Gusto.";
+  const welcomeTextDescription = `Tell me what you're craving, what ingredients you have, or what you're ordering—and I'll help you find the perfect recipe, cooking tips, or meal ideas.`;
 
   const sendMessage = async (prompt: string) => {
     if (
@@ -30,7 +32,7 @@ export const AskGusto = () => {
       return;
     } else {
       const newMessage: Message = {
-        id: "1",
+        id: `msg-${generateRandomId()}`,
         role: MessageRole.USER,
         data: {
           content: prompt || "",
@@ -59,7 +61,7 @@ export const AskGusto = () => {
           <MessageBubble
             key={`streamingMessage-${Date.now()}`}
             message={{
-              id: "111111",
+              id: `msg-${generateRandomId()}`,
               role: MessageRole.BOT,
               data: {
                 content: streamingMessage?.text || "",
@@ -74,13 +76,18 @@ export const AskGusto = () => {
           )}
         <div className="mb-[108px]"></div>
       </div>
-      <div className="">
+      <div className="w-full">
         {showPromptInputAtCenter && (
-          <div className="absolute bottom-[65%] left-1/2 -translate-x-1/2 text-3xl font-medium">
-            {welcomeText}
+          <div className="absolute bottom-[65%] left-1/2 -translate-x-1/2 space-y-6">
+            <div className="text-3xl leading-1 tracking-tighter font-extrabold">
+              {welcomeTextTitle}
+            </div>
+            <div className="text-md font-medium">
+              {welcomeTextDescription}
+            </div>
           </div>
         )}
-        <div>
+        <div className="w-full">
           <PromptInput
             containerClassName={`absolute ${
               showPromptInputAtCenter

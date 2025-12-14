@@ -46,3 +46,16 @@ export const applyThemeColors = (uiConfig: IConfig) => {
   setProperty("--font-family-base", typography.fontFamily);
   // setProperty("--font-size-base", typography.fontSizeBase);
 };
+
+export const generateRandomId = (length: number = 10) => {
+  let id = "";
+  const chars =
+    "abcdefghikjlmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  for (let i = 0; i <= length; i = i + 1) {
+    const randomIdx = Math.floor(
+      Math.random() * chars.length
+    );
+    id = id + chars[randomIdx];
+  }
+  return id;
+};

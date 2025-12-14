@@ -9,6 +9,14 @@ const googleApiKey =
 
 const ai = new GoogleGenAI({ apiKey: googleApiKey });
 
+const SYSTEM_PROMPT =
+  process.env.GUSTO_SMALL_SYSTEM_LEVEL_INSTRUCTIONS;
+
+// (async () => {
+//   // cache does not work on free tier
+//   await initSystemPromptCache(ai); // initialize cache on startup
+// })();
+
 export const generateResponse = async (
   req: Request,
   res: Response
@@ -17,6 +25,8 @@ export const generateResponse = async (
   res.setHeader("Cache-Control", "no-cache");
   res.setHeader("Connection", "keep-alive");
   res.flushHeaders();
+
+  // const SYSTEM_PROMPT_CACHE_ID = getSystemPromptCacheId();
 
   try {
     const prompt = req.query.prompt;
@@ -28,7 +38,12 @@ export const generateResponse = async (
 
     const response = await ai.models.generateContentStream({
       model: "gemini-2.5-flash",
-      contents: prompt || "",
+      contents:
+        `${SYSTEM_PROMPT}\n\n User Asked: \n${prompt}` ||
+        "",
+      // config: {
+      //   cachedContent: SYSTEM_PROMPT_CACHE_ID,
+      // },
     });
     for await (const chunk of response) {
       res.write(`data: ${JSON.stringify({ chunk })}\n\n`);

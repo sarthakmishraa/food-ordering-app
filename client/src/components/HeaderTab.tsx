@@ -9,7 +9,7 @@ export const HeaderTab = ({
     <div
       className={`${
         isActiveTab && "underline"
-      } cursor-pointer text-[var(--color-text-primary)] hover:underline hover:text-[color:var(--color-text-secondary)] text-xl font-bold transition duration-100`}
+      } cursor-pointer text-[var(--color-text-primary)] hover:text-[color:var(--color-text-secondary)] text-md font-bold transition duration-100`}
       onClick={(e) => onClick(e)}
     >
       {tabTitle}
