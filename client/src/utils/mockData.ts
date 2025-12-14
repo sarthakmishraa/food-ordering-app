@@ -44,5 +44,40 @@ export const mockMessages = {
       },
       createdAt: 1765693101886,
     },
+    {
+      id: "msg-SNCCYz297dr",
+      role: "USER",
+      data: {
+        content:
+          "draw a table with ingredients to cook samosa",
+      },
+      createdAt: 1765694585743,
+    },
+    {
+      id: "1765694590681",
+      role: "BOT",
+      data: {
+        content:
+          "Certainly! Here's a table with the ingredients you'll need to cook delicious samosas:\n\n| Ingredient                 | Quantity/Notes                                   |\n| :------------------------- | :----------------------------------------------- |\n| **For the Dough**          |                                                  |\n| All-purpose flour (Maida)  | 2 cups                                           |\n| Salt                       | ½ teaspoon                                       |\n| Carom seeds (Ajwain)       | ½ teaspoon (optional)                            |\n| Ghee or Vegetable Oil      | 4 tablespoons (for shortening the dough)         |\n| Cold Water                 | ½ cup or as needed (for kneading)                |\n|                            |                                                  |\n| **For the Filling**        |                                                  |\n| Potatoes                   | 3-4 medium, boiled, peeled, and mashed coarsely  |\n| Green Peas                 | ½ cup, fresh or frozen                           |\n| Vegetable Oil              | 2 tablespoons (for cooking the filling)          |\n| Cumin Seeds                | 1 teaspoon                                       |\n| Ginger                     | 1 inch piece, grated or finely chopped           |\n| Green Chilies              | 1-2, finely chopped (adjust to taste)            |\n| Onion                      | ½ small, finely chopped (optional)               |\n| Coriander Powder           | 1 teaspoon                                       |\n| Turmeric Powder            | ¼ teaspoon                                       |\n| Red Chili Powder           | ½ teaspoon (adjust to taste)                     |\n| Garam Masala               | ½ teaspoon                                       |\n| Dry Mango Powder (Amchur)  | ½ teaspoon (for tanginess)                       |\n| Salt                       | To taste                                         |\n| Fresh Coriander Leaves     | ¼ cup, chopped                                   |\n|                            |                                                  |\n| **For Frying**             |                                                  |\n| Vegetable Oil              | Enough for deep frying                           |\n\nOnce you have these, you'll be ready to start making your samosas! Let me know if you'd like a step-by-step recipe.",
+      },
+      createdAt: 1765694590681,
+    },
+    {
+      id: "msg-MrJ2rxwi7EE",
+      role: "USER",
+      data: {
+        content: "write a markdown of recipe of samosa",
+      },
+      createdAt: 1765694758010,
+    },
+    {
+      id: "1765694763822",
+      role: "BOT",
+      data: {
+        content:
+          "Certainly! Here's a delicious recipe for traditional Indian Samosas, presented in markdown format:\n\n# Classic Indian Samosas\n\nThese crispy, savory pastries are a beloved snack, perfect for any occasion!\n\n## Ingredients\n\n### For the Dough (Outer Crust)\n*   2 cups all-purpose flour\n*   1/2 teaspoon salt\n*   1/4 cup ghee or vegetable oil (for mochana/shortening)\n*   1/2 cup cold water (approximately, adjust as needed)\n\n### For the Potato & Pea Filling\n*   2 large potatoes, boiled, peeled, and roughly mashed (chunky, not smooth)\n*   1/2 cup fresh or frozen green peas\n*   1 tablespoon vegetable oil\n*   1 teaspoon cumin seeds\n*   1/2 inch ginger, grated or finely minced\n*   1-2 green chilies, finely chopped (adjust to taste)\n*   1/2 teaspoon turmeric powder\n*   1 teaspoon coriander powder\n*   1/2 teaspoon garam masala\n*   1/2 teaspoon dry mango powder (amchur), optional\n*   1/4 teaspoon red chili powder (optional, adjust to taste)\n*   Salt to taste\n*   2 tablespoons fresh cilantro, chopped\n\n### For Frying\n*   Vegetable oil, for deep frying\n\n## Instructions\n\n### 1. Prepare the Dough\n1.  In a large bowl, combine the all-purpose flour and salt.\n2.  Add the ghee or oil to the flour. Rub it into the flour with your fingertips until the mixture resembles coarse breadcrumbs and holds its shape when pressed. This step is crucial for crispy samosas.\n3.  Gradually add cold water, a little at a time, and knead until you form a firm, smooth, and stiff dough. It should not be sticky.\n4.  Cover the dough with a damp cloth and let it rest for at least 30 minutes.\n\n### 2. Prepare the Filling\n1.  Heat 1 tablespoon of oil in a pan over medium heat. Add cumin seeds and let them splutter.\n2.  Add grated ginger and chopped green chilies. Sauté for about 30 seconds until fragrant.\n3.  Add turmeric powder, coriander powder, red chili powder (if using), and garam masala. Sauté for another 30 seconds, stirring constantly to prevent burning.\n4.  Add the boiled and roughly mashed potatoes along with the green peas. Mix well, gently breaking up any larger potato chunks.\n5.  Add dry mango powder (if using) and salt to taste. Cook for 3-5 minutes, stirring occasionally, until the mixture is well combined and slightly dry.\n6.  Remove from heat, stir in the fresh cilantro, and let the filling cool completely.\n\n### 3. Assemble the Samosas\n1.  Divide the rested dough into 6-8 equal portions.\n2.  Take one portion and roll it into an oval shape, about 6-7 inches long and 4-5 inches wide. The dough should be about 1/8 inch thick.\n3.  Cut the oval in half lengthwise to create two semi-circles.\n4.  Take one semi-circle. Dampen the straight edge with a little water. Bring the two ends of the straight edge together and overlap them slightly to form a cone shape, pressing firmly to seal.\n5.  Hold the cone in one hand and spoon 1-2 tablespoons of the potato filling inside, don't overfill.\n6.  Dampen the open rim of the cone with water. Press and pleat the edges to seal the samosa completely, forming the classic triangular shape. Make sure there are no gaps.\n7.  Repeat with the remaining dough and filling.\n\n### 4. Fry the Samosas\n1.  Heat enough vegetable oil in a deep pan or wok for deep frying, over low to medium heat. The oil should not be too hot initially.\n2.  Carefully slide 3-4 samosas into the hot oil. Do not overcrowd the pan.\n3.  Fry on low to medium heat for about 10-15 minutes, turning occasionally, until the samosas are golden brown and crispy on all sides. Frying on lower heat ensures the crust cooks through and becomes flaky.\n4.  Remove the fried samosas with a slotted spoon and place them on paper towels to drain excess oil.\n5.  Serve hot with your favorite chutneys like mint chutney or tamarind chutney!\n\nEnjoy your homemade samosas!",
+      },
+      createdAt: 1765694763822,
+    },
   ],
 };
