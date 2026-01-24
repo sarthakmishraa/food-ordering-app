@@ -19,6 +19,9 @@ export const Landing = () => {
     navigate("/menu");
   };
 
+  const handleAskGustoClick = () => {
+    navigate("/gusto");
+  };
   const validTitle =
     appConfig?.appTitle && appConfig.appTitle?.length > 0;
 
@@ -55,10 +58,16 @@ export const Landing = () => {
               className="text-center lg:w-[640px] text-sm font-normal leading-snug tracking-normal"
             />
           )}
-          <PrimaryButton
-            text="Get Started"
-            onClick={handleGetStartedClick}
-          />
+          <div className="flex justify-around items-center space-x-4">
+            <PrimaryButton
+              text="Get Started"
+              onClick={handleGetStartedClick}
+            />
+            <PrimaryButton
+              text="Ask Gusto"
+              onClick={handleAskGustoClick}
+            />
+          </div>
         </>
       ) : null}
     </div>

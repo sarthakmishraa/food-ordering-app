@@ -51,7 +51,7 @@ export const PromptInput: React.FC<{
         className="flex justify-end cursor-pointer"
         onClick={handleSubmit}
       >
-        <div className="p-2 rounded-xl duration-150 hover:bg-[color:var(--color-text-secondary)]/50">
+        <div className="p-2 rounded-xl duration-300 bg-[color:var(--color-bg-primary)] text-[color:var(--color-text-primary)] hover:bg-[color:var(--color-text-primary)] hover:text-[color:var(--color-bg-primary)]">
           <IoSend size={18} />
         </div>
       </div>

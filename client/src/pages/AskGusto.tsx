@@ -14,8 +14,12 @@ import {
 import { MessageBubble } from "../components/MessageBubble";
 import { ThinkingIndicator } from "../components/ThinkingIndicator";
 import { generateRandomId } from "../utils/helper";
+import { useRef } from "react";
+import { useScrollToBottom } from "../hooks/useScrollToBottom";
 
 export const AskGusto = () => {
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+
   const dispatch = useAppDispatch();
   const messages = useAppSelector(useMessages);
   const streamingMessage = useAppSelector(useStreamMessage);
@@ -46,6 +50,8 @@ export const AskGusto = () => {
     }
   };
 
+  useScrollToBottom(bottomRef, messages);
+
   return (
     <div className="relative w-full flex-1 flex flex-col justify-between items-center space-y-1">
       <div className="p-4 w-full max-h-[calc(100vh-64px)] space-y-4 overflow-y-auto">
@@ -75,6 +81,7 @@ export const AskGusto = () => {
             <ThinkingIndicator />
           )}
         <div className="mb-[108px]"></div>
+        <div ref={bottomRef} />
       </div>
       <div className="w-full">
         {showPromptInputAtCenter && (

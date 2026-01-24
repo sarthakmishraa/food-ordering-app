@@ -55,6 +55,7 @@ export const Header = () => {
           tabTitle="Ask Gusto"
           onClick={handleGustoClick}
           isActiveTab={pathname === "/gusto"}
+          specialTab
         />
         <HeaderTab
           tabTitle="Help"

@@ -30,6 +30,7 @@ export interface IHeaderTab {
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => void;
   isActiveTab?: boolean;
+  specialTab?: boolean;
 }
 
 export interface IBanner {
