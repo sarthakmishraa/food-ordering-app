@@ -10,10 +10,14 @@ export const PrimaryButton = ({
 }: IPrimaryButton) => {
   return (
     <div
-      className={`${extraContainerClassNames} cursor-pointer disabled:cursor-not-allowed transition transition-duration-100 hover:bg-[color:var(--color-bg-surface)] hover:text-[color:var(--color-bg-secondary)] rounded-md shadow-md`}
+      className={`cursor-pointer disabled:cursor-not-allowed transition transition-duration-100 ${
+        disabled
+          ? ""
+          : "hover:bg-[color:var(--color-bg-surface)] hover:text-[color:var(--color-bg-secondary)]"
+      } rounded-md shadow-md ${extraContainerClassNames}`}
     >
       <button
-        className={`${extraButtonClassNames} cursor-pointer text-sm font-bold p-2 border border-[color:var(--color-border)] rounded-sm`}
+        className={`cursor-pointer text-sm font-bold p-2 border disabled:cursor-not-allowed disabled:bg-[color:var(--color-bg-surface)]/50 border-[color:var(--color-border)] rounded-sm ${extraButtonClassNames}`}
         onClick={(e) => onClick(e)}
         disabled={disabled}
       >

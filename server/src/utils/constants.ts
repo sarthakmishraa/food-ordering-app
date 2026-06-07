@@ -7,3 +7,4 @@ export enum IPaymentMethod {
 }
 
 export const TAX_PERCENTAGE = 18;
+export const PAGE_SIZE = 20;
