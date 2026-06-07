@@ -2,7 +2,10 @@ import {
   createAsyncThunk,
   createSlice,
 } from "@reduxjs/toolkit";
-import type { RootState } from "../store/store";
+import type {
+  CommonRequestInput,
+  RootState,
+} from "../store/store";
 import {
   NetworkStatus,
   NetworkStatusEnum,
@@ -17,6 +20,9 @@ export type MenuState = {
   menu: {
     data: IMenuItem[] | null;
     networkStatus: NetworkStatus;
+    pageNumber: number;
+    hasMore: boolean;
+    totalElements: number | null;
   };
 };
 
@@ -24,20 +30,46 @@ const initialState: MenuState = {
   menu: {
     data: null,
     networkStatus: NetworkStatusEnum.Idle,
+    pageNumber: 0,
+    hasMore: true,
+    totalElements: null,
   },
 };
 
 export const getMenu = createAsyncThunk(
   "menu/getMenu",
-  async () => {
+  async ({ searchText }: CommonRequestInput, thunkAPI) => {
     try {
-      const response = await fetch(`${BE_API_URL}/menu`);
+      const state = thunkAPI.getState() as RootState;
+      const pageNumber = state.menuSlice.menu.pageNumber;
+      const queryParams = new URLSearchParams({
+        searchText: searchText ?? "",
+        pageNumber: pageNumber.toString(),
+      });
+      const response = await fetch(
+        `${BE_API_URL}/menu?${queryParams}`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData?.message);
+      }
+
       return response.json();
-    } catch (error) {
-      toast.error("Something went wrong", {
+    } catch (error: any) {
+      const errorMessage = error?.message;
+      toast.error(errorMessage ?? "Something went wrong", {
         style: toastStyles,
       });
-      throw new Error("Failed to fetch menu");
+      return thunkAPI.rejectWithValue(
+        errorMessage || "Network Error"
+      );
     }
   }
 );
@@ -46,20 +78,12 @@ const menuSlice = createSlice({
   name: "menuSlice",
   initialState: initialState,
   reducers: {
-    // addItemToCart: (
-    //   state,
-    //   action: PayloadAction<IPurchasedItem>
-    // ) => {
-    //   const newItem = action.payload;
-    //   const existingItemIndex = state.cart.findIndex(
-    //     (item) => item.id === newItem.id
-    //   );
-    //   if (existingItemIndex !== -1) {
-    //     state.cart[existingItemIndex].quantity += 1;
-    //   } else {
-    //     state.cart.push({ ...newItem, quantity: 1 });
-    //   }
-    // },
+    resetPageMenu: (state) => {
+      state.menu.pageNumber = initialState.menu.pageNumber;
+    },
+    nextPageMenu: (state) => {
+      state.menu.pageNumber = state.menu.pageNumber + 1;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -68,8 +92,20 @@ const menuSlice = createSlice({
           NetworkStatusEnum.Loading;
       })
       .addCase(getMenu.fulfilled, (state, action) => {
+        if (state.menu.pageNumber === 0) {
+          state.menu.data = action.payload.data;
+        } else {
+          if (state.menu.data) {
+            state.menu.data = [
+              ...state.menu.data,
+              ...action.payload.data,
+            ];
+          }
+        }
+        state.menu.hasMore = action.payload.hasMore;
+        state.menu.totalElements =
+          action.payload.totalItems;
         state.menu.networkStatus = NetworkStatusEnum.Loaded;
-        state.menu.data = action.payload;
       })
       .addCase(getMenu.rejected, (state) => {
         state.menu.networkStatus = NetworkStatusEnum.Error;
@@ -77,7 +113,8 @@ const menuSlice = createSlice({
   },
 });
 
-export const {} = menuSlice.actions;
+export const { resetPageMenu, nextPageMenu } =
+  menuSlice.actions;
 export const useMenu = (state: RootState) =>
   state.menuSlice.menu;
 export default menuSlice.reducer;
