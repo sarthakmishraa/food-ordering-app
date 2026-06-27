@@ -13,7 +13,7 @@ export const PrimaryButton = ({
       className={`cursor-pointer disabled:cursor-not-allowed transition transition-duration-100 ${
         disabled
           ? ""
-          : "hover:bg-[color:var(--color-bg-surface)] hover:text-[color:var(--color-bg-secondary)]"
+          : "hover:bg-[color:var(--color-text-secondary)] hover:text-[color:var(--color-bg-secondary)]"
       } rounded-md shadow-md ${extraContainerClassNames}`}
     >
       <button

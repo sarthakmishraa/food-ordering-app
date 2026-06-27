@@ -54,7 +54,7 @@ function App() {
   };
 
   return (
-    <div className="px-4 lg:px-20 w-full min-h-screen flex flex-col bg-linear-to-b from-[var(--color-bg-secondary)] to-[color:var(--color-bg-primary)] selection:bg-[color:var(--color-text-primary)] selection:text-[color:var(--color-bg-primary)]">
+    <div className="px-4 lg:px-20 w-full min-h-screen flex flex-col bg-gradient-to-b from-[color:var(--color-bg-primary)] via-[color:var(--color-accent)] via-10% to-[color:var(--color-bg-primary)] to-70% selection:bg-[color:var(--color-text-primary)] selection:text-[color:var(--color-bg-primary)]">
       <Router>
         <Header />
         <Routes>

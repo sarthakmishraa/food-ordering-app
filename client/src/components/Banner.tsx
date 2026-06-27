@@ -8,10 +8,10 @@ export const Banner = ({
   return (
     <div className="w-full relative">
       <div
-        className={`${containerClassNames} h-32 w-full flex justify-center items-center bg-[color:var(--color-bg-secondary)] rounded-xl shadow-md border border-neutral-200`}
+        className={`h-32 w-full flex justify-center items-center rounded-xl shadow-md border ${containerClassNames}`}
       >
         <div
-          className={`${labelClassNames} font-bold text-3xl sm:text-5xl lg:text-7xl tracking-tight text-[color:var(--color-text-primary)]`}
+          className={`font-bold text-3xl sm:text-5xl lg:text-7xl tracking-tight text-[color:var(--color-text-primary)] ${labelClassNames}`}
         >
           {label}
         </div>

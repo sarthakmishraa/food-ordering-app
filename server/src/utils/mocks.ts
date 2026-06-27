@@ -1694,28 +1694,35 @@ export const helpDetails = {
 };
 
 export const uiConfig = {
-  appTitle: "Sasta Swiggy",
-  heroSectionDescription:
-    "Craving your favorite meals without burning your wallet? Sasta Swiggy brings you hot, tasty food from local restaurants at the lowest prices—delivered fast to your doorstep.",
+  appTitle: "KitchenFlow",
+  tagline: "Smart Food Ordering for Modern Kitchens",
+  hero: {
+    title: "Launch Your Food Ordering Platform in Minutes",
+    description:
+      "A fully customizable ordering system built for restaurants, cloud kitchens, cafes, bakeries, and food delivery businesses. Your brand. Your menu. Your customers.",
+  },
   colors: {
     bgColor: {
-      primary: "#ffffff",
-      secondary: "#f7f7f7",
-      surface: "#434348",
+      primary: "#FCFBF8",
+      secondary: "#F6F3EE",
+      surface: "#FFFFFF",
     },
+
     textColor: {
-      primary: "#4D4D4D",
-      secondary: "#929191",
-      link: "#0875B1",
-      inverse: "#ffffff",
+      primary: "#1F2937",
+      secondary: "#6B7280",
+      link: "#F97316",
+      inverse: "#FFFFFF",
     },
-    accentColor: "#4D4D4D",
-    borderColor: "#4D4D4D",
+
+    accentColor: "#F97316",
+    borderColor: "#E8E5DF",
+
     states: {
-      success: "#15C309",
-      warning: "#FC950F",
-      error: "#FC0F0F",
-      info: "#0FC5FC",
+      success: "#10B981",
+      warning: "#F59E0B",
+      error: "#EF4444",
+      info: "#3B82F6",
     },
   },
 

@@ -61,7 +61,7 @@ export const signInUser = createAsyncThunk<ISignInUser>(
     try {
       const state = thunkAPI.getState() as RootState;
       const body = JSON.stringify(
-        state.appContextSlice.userDetails
+        state.appContextSlice.userDetails.data
       );
 
       const response = await fetch(`${BE_API_URL}/signIn`, {

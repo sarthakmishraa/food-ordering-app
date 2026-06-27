@@ -26,8 +26,8 @@ export const Landing = () => {
     appConfig?.appTitle && appConfig.appTitle?.length > 0;
 
   const validDescription =
-    appConfig?.heroSectionDescription &&
-    appConfig?.heroSectionDescription?.length > 0;
+    appConfig?.hero?.description &&
+    appConfig?.hero?.description?.length > 0;
 
   return (
     <div
@@ -45,13 +45,14 @@ export const Landing = () => {
         <>
           {validTitle && (
             <Banner
-              label={`Welcome to ${appConfig?.appTitle}`}
+              label={`${appConfig?.hero?.title}`}
+              labelClassNames="text-xl sm:!text-2xl md:!text-3xl lg:!text-4xl xl:!text-5xl"
             />
           )}
           {validDescription && (
             <Label
-              text={`${appConfig.heroSectionDescription}`}
-              className="text-center lg:w-[640px] text-sm font-normal leading-snug tracking-normal"
+              text={`${appConfig.hero.description}`}
+              className="sm:px-6 lg:px-36 text-sm sm:text-lg lg:text-xl text-center font-normal leading-snug tracking-normal"
             />
           )}
           <div className="flex justify-around items-center space-x-4">

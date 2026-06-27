@@ -4,7 +4,12 @@ import { useAppSelector } from "../store/hooks";
 import { useCart } from "../slices/cartSlice";
 import { PrimaryButton } from "./PrimaryButton";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
-import { REACT_ICONS_PI_ICON_SIZE } from "../utils/constants";
+import {
+  NetworkStatusEnum,
+  REACT_ICONS_PI_ICON_SIZE,
+} from "../utils/constants";
+import { Label } from "./Label";
+import { useUIConfig } from "../slices/appContextSlice";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -12,6 +17,11 @@ export const Header = () => {
   const pathname = location.pathname;
 
   const cart = useAppSelector(useCart);
+  const {
+    data: appConfig,
+    networkStatus: appConfigNetworkStatus,
+  } = useAppSelector(useUIConfig);
+
   const noOfItemsInCart = cart?.length;
 
   const handleHomeClick = () => {
@@ -38,14 +48,22 @@ export const Header = () => {
     navigate("cart");
   };
 
+  const appName =
+    appConfigNetworkStatus === NetworkStatusEnum.Loading
+      ? "Loading App..."
+      : appConfig?.appTitle;
+  console.log(appConfig);
+
   return (
-    <div className="flex justify-between p-4">
+    <div className="flex justify-between p-4 border my-4 rounded-full shadow-2xl">
       <div className="flex space-x-4">
-        <HeaderTab
-          tabTitle="Home"
+        <Label
+          text={`${appName}`}
           onClick={handleHomeClick}
-          isActiveTab={pathname === "/"}
+          className="cursor-pointer"
         />
+      </div>
+      <div className="flex items-center space-x-4">
         <HeaderTab
           tabTitle="Menu"
           onClick={handleMenuClick}
