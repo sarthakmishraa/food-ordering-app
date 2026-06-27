@@ -6,6 +6,7 @@ import config from "./routes/config";
 import menuCart from "./routes/menuCart";
 import helpAndSupport from "./routes/helpAndSupport";
 import generateTextResponse from "./routes/generateTextResponse";
+import auth from "./routes/auth";
 
 dotenv.config();
 
@@ -25,6 +26,8 @@ app.use("", home);
 
 // config APIs
 app.use("", config);
+
+app.use("", auth);
 
 // menuCart APIs
 app.use("", menuCart);

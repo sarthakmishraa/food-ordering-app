@@ -1,4 +1,4 @@
-import React from "react";
+import { ReactNode, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -23,6 +23,8 @@ import {
 } from "./slices/appContextSlice.ts";
 import { NetworkStatusEnum } from "./utils/constants.ts";
 import { AskGusto } from "./pages/AskGusto.tsx";
+import AuthPage from "./pages/auth/AuthPage.tsx";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -41,11 +43,15 @@ function App() {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (appConfigNetworkStatus === NetworkStatusEnum.Idle) {
       configureTheme();
     }
   }, [appConfigNetworkStatus]);
+
+  const protectRoute = (el: ReactNode) => {
+    return <ProtectedRoute>{el}</ProtectedRoute>;
+  };
 
   return (
     <div className="px-4 lg:px-20 w-full min-h-screen flex flex-col bg-linear-to-b from-[var(--color-bg-secondary)] to-[color:var(--color-bg-primary)] selection:bg-[color:var(--color-text-primary)] selection:text-[color:var(--color-bg-primary)]">
@@ -53,11 +59,28 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/help" element={<Help />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/gusto" element={<AskGusto />} />
+          <Route path="/signin" element={<AuthPage />} />
+          <Route path="/signup" element={<AuthPage />} />
+          <Route
+            path="/menu"
+            element={protectRoute(<Menu />)}
+          />
+          <Route
+            path="/help"
+            element={protectRoute(<Help />)}
+          />
+          <Route
+            path="/orders"
+            element={protectRoute(<Orders />)}
+          />
+          <Route
+            path="/cart"
+            element={protectRoute(<Cart />)}
+          />
+          <Route
+            path="/gusto"
+            element={protectRoute(<AskGusto />)}
+          />
         </Routes>
         <Toaster position="bottom-left" />
       </Router>
