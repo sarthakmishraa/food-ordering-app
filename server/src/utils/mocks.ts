@@ -1724,3 +1724,13 @@ export const uiConfig = {
     fontSizeBase: "16px",
   },
 };
+
+export const usersDB = [
+  {
+    username: "sarthakmishra",
+    email: "msarthak785@gmail.com",
+    name: "Sarthak Mishra",
+    password: "sarthak@123",
+    phoneNumber: "6268659788",
+  },
+];

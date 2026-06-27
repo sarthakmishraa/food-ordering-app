@@ -29,10 +29,6 @@ export const Landing = () => {
     appConfig?.heroSectionDescription &&
     appConfig?.heroSectionDescription?.length > 0;
 
-  const loggedIn = true;
-
-  if (!loggedIn) return <div>Sign Up</div>;
-
   return (
     <div
       className={`w-full h-full flex flex-col ${

@@ -9,6 +9,7 @@ interface Props {
   ) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   autoFocus?: boolean;
+  type?: string;
 }
 
 const Input = (props: Props) => {
@@ -21,6 +22,7 @@ const Input = (props: Props) => {
     onKeyDown,
     onFocus,
     autoFocus,
+    type,
   } = props;
   return (
     <input
@@ -35,6 +37,7 @@ const Input = (props: Props) => {
       onFocus={(e) => onFocus?.(e)}
       ref={inputRef}
       autoFocus={autoFocus}
+      type={type}
     />
   );
 };

@@ -75,6 +75,7 @@ export interface SomethingWentWrongProps {
 export interface LabelProps {
   text: string;
   className?: string;
+  onClick?: () => void;
 }
 
 export interface IItemsFromCartDetails {
@@ -126,6 +127,28 @@ export interface IConfig {
     states: StateColors;
   };
   typography: TypographyConfig;
+}
+
+export interface IUserDetails {
+  name?: string;
+  username?: string;
+  password?: string;
+  email?: string;
+  phoneNumber?: string;
+  loggedIn?: boolean;
+}
+
+export interface ISignInUser {
+  message?: string;
+  user?: IUserDetails;
+}
+
+export interface FieldMapper {
+  fieldKey: keyof IUserDetails;
+  label: string;
+  placeholder?: string;
+  fieldType?: string;
+  showOnSignIn: boolean;
 }
 
 export interface Message {
