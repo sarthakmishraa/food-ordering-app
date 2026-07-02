@@ -54,7 +54,7 @@ export const AskGusto = () => {
 
   return (
     <div className="relative w-full flex-1 flex flex-col justify-between items-center space-y-1">
-      <div className="p-4 w-full max-h-[calc(100vh-64px)] space-y-4 overflow-y-auto">
+      <div className="p-4 w-full max-h-[calc(100vh-66px)] space-y-4 overflow-y-auto">
         {messages?.map((message, index: number) => {
           return (
             <MessageBubble
@@ -76,10 +76,10 @@ export const AskGusto = () => {
             }}
           />
         )}
-        {streamingMessage?.isStreaming &&
-          streamingMessage?.isThinking && (
-            <ThinkingIndicator />
-          )}
+        {(streamingMessage?.isStreaming ||
+          streamingMessage?.isThinking) && (
+          <ThinkingIndicator />
+        )}
         <div className="mb-[108px]"></div>
         <div ref={bottomRef} />
       </div>

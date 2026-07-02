@@ -1715,7 +1715,7 @@ export const uiConfig = {
       inverse: "#FFFFFF",
     },
 
-    accentColor: "#F97316",
+    accentColor: "#fdffde",
     borderColor: "#E8E5DF",
 
     states: {

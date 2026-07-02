@@ -78,7 +78,6 @@ const AuthPage = () => {
       const isFormValid = validFieldsBoolean?.every(
         (field) => field === true
       );
-      console.log({ validFieldsBoolean, isFormValid });
       if (!isFormValid) return;
 
       if (onSignInPage) {

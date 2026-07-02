@@ -52,7 +52,6 @@ export const Header = () => {
     appConfigNetworkStatus === NetworkStatusEnum.Loading
       ? "Loading App..."
       : appConfig?.appTitle;
-  console.log(appConfig);
 
   return (
     <div className="flex justify-between p-4 border my-4 rounded-full shadow-2xl">
