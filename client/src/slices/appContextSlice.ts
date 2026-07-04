@@ -163,6 +163,16 @@ const appContextSlice = createSlice({
           ...action.payload.user,
           loggedIn: true,
         };
+
+        const localStorage = window.localStorage;
+        const user = state.userDetails.data;
+        const data = {
+          user,
+        };
+        const stringifiedData = JSON.stringify(data);
+        if (user?.loggedIn) {
+          localStorage.setItem("foa", stringifiedData);
+        }
       })
       .addCase(signInUser.rejected, (state) => {
         state.userDetails.networkStatus =

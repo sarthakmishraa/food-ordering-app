@@ -19,6 +19,7 @@ import {
 import { applyThemeColors } from "./utils/helper";
 import {
   getUIConfig,
+  updateUserDetails,
   useUIConfig,
 } from "./slices/appContextSlice.ts";
 import { NetworkStatusEnum } from "./utils/constants.ts";
@@ -30,6 +31,8 @@ function App() {
   const dispatch = useAppDispatch();
   const { networkStatus: appConfigNetworkStatus } =
     useAppSelector(useUIConfig);
+
+  const localStorage = window.localStorage;
 
   const getAppConfig = async () => {
     return await dispatch(getUIConfig()).unwrap();
@@ -48,6 +51,25 @@ function App() {
       configureTheme();
     }
   }, [appConfigNetworkStatus]);
+
+  const loggedInCheck = () => {
+    const foaData = localStorage.getItem("foa");
+    if (foaData) {
+      const data = JSON.parse(foaData);
+      if (data?.user) {
+        dispatch(
+          updateUserDetails({
+            ...data?.user,
+            loggedIn: true,
+          })
+        );
+      }
+    }
+  };
+
+  useEffect(() => {
+    loggedInCheck();
+  }, []);
 
   const protectRoute = (el: ReactNode) => {
     return <ProtectedRoute>{el}</ProtectedRoute>;

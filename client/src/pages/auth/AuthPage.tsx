@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Input from "../../components/Input";
 import { Label } from "../../components/Label";
 import { PrimaryButton } from "../../components/PrimaryButton";
@@ -33,10 +33,21 @@ const AuthPage = () => {
 
   const navigate = useNavigate();
 
+  const pathname = location.pathname;
+
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onSignInPage = location.pathname === "/signin";
   const onSignUpPage = location.pathname === "/signup";
+
+  useEffect(() => {
+    if (
+      userDetails?.loggedIn &&
+      (pathname === "/signin" || pathname === "/signup")
+    ) {
+      navigate("/");
+    }
+  }, [userDetails]);
 
   const handleUserDetailsChange = <
     K extends keyof IUserDetails
